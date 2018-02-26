@@ -1,0 +1,23 @@
+version: '3'
+volumes:
+  mongo-persistent-storage1:
+services:
+  mongodb:
+    image: mongo:3.6.2
+    ports:
+      - '27017:27017'
+    volumes:
+      - "mongo-persistent-storage1:/data/db"
+    # command:
+    networks:
+      - webnet
+  app:
+    build:
+      context: .
+      dockerfile: _dockerfiles/Dockerfile
+    ports:
+      - '8888:8888'
+    networks:
+      - webnet
+networks:
+  webnet:

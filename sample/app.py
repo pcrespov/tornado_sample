@@ -16,7 +16,7 @@ define("port", default=8888, type=int)
 define("config_file", default="app_config.yml", help="app_config file")
 
 #MONGO_SERVER = '192.168.1.68'
-MONGO_SERVER = 'localhost'
+MONGO_SERVER = 'mongodb'  # TODO externalize
 
 
 class Application(tornado.web.Application):
@@ -82,6 +82,7 @@ class Application(tornado.web.Application):
 
 # to redirect log file run python with : --log_file_prefix=mylog
 def main():
+    print "starting ..."
     tornado.options.parse_command_line()
     http_server = tornado.httpserver.HTTPServer(Application())
     http_server.listen(options.port)
