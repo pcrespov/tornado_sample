@@ -1,8 +1,9 @@
-# Python imports
-
-# Tornado imports
-import pymongo
+import os
+import sys
 import uuid
+
+import pymongo
+
 import tornado.ioloop
 import tornado.options
 import tornado.web
@@ -11,6 +12,8 @@ from tornado.web import url
 
 from handlers.handlers import *
 
+_CFILE = os.path.normpath(sys.argv[0] if __name__=='__main__' else __file__)
+_CDIR = os.path.dirname(_CFILE)
 
 define("port", default=8888, type=int)
 define("config_file", default="app_config.yml", help="app_config file")
