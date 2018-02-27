@@ -13,7 +13,7 @@ WORKDIR /home/usr
 COPY sample/requirements.txt .
 RUN pip install -r requirements.txt
 
-COPY sample .
+VOLUME /home/usr
 EXPOSE 8888
 
 CMD ["python", "app.py", "--port=8888"]
